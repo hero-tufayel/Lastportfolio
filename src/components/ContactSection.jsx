@@ -7,6 +7,7 @@ import {
   Send,
   Twitch,
   Twitter,
+  Github,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -16,19 +17,47 @@ export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    const formData = new FormData(e.target);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      to: 'abdulaziztufayel7@gmail.com'
+    };
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        e.target.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -56,10 +85,10 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium"> Email</h4>
                   <a
-                    href="mailto:hello@gmail.com"
+                    href="mailto:abdulaziztufayel7@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    hello@gmail.com
+                    abdulaziztufayel7@gmail.com
                   </a>
                 </div>
               </div>
@@ -70,10 +99,10 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium"> Phone</h4>
                   <a
-                    href="tel:+11234567890"
+                    href="tel:+8801720154690"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    +1 (123) 456-7890
+                    +88 0172015-4690
                   </a>
                 </div>
               </div>
@@ -84,7 +113,7 @@ export const ContactSection = () => {
                 <div>
                   <h4 className="font-medium"> Location</h4>
                   <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Vancouver, BC, Canada
+                    Sylhet, Bangladesh
                   </a>
                 </div>
               </div>
@@ -93,10 +122,13 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
+                <a href="https://github.com/hero-tufayel" target="_blank">
+                  <Github />
+                </a>
                 <a href="#" target="_blank">
                   <Linkedin />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://x.com/TufayelAziz" target="_blank">
                   <Twitter />
                 </a>
                 <a href="#" target="_blank">
@@ -111,11 +143,10 @@ export const ContactSection = () => {
 
           <div
             className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
           >
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="name"
@@ -130,7 +161,7 @@ export const ContactSection = () => {
                   name="name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
+                  placeholder="Your name..."
                 />
               </div>
 
@@ -148,7 +179,7 @@ export const ContactSection = () => {
                   name="email"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
+                  placeholder="abdulaziztufayel7@gmail.com"
                 />
               </div>
 
