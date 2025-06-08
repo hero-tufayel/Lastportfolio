@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @theme {
   --color-border: hsl(var(--border));
@@ -101,57 +103,92 @@
   }
 }
 
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-
-  @media (width >= 640px) {
-    max-width: 640px;
+@layer components {
+  .container {
+    @apply mx-auto px-8;
+    @apply sm:max-w-[640px];
+    @apply md:max-w-[768px];
+    @apply lg:max-w-[1024px];
+    @apply xl:max-w-[1280px];
+    @apply 2xl:max-w-[1400px];
   }
-  @media (width >= 768px) {
-    max-width: 768px;
+
+  .text-glow {
+    @apply relative;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
   }
-  @media (width >= 1024px) {
-    max-width: 1024px;
+
+  .card-hover {
+    @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
   }
-  @media (width >= 1280px) {
-    max-width: 1280px;
+
+  .gradient-border {
+    @apply relative rounded-md;
+    background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
+    background-clip: padding-box;
+    border: 1px solid transparent;
   }
-  @media (width >= 1400px) {
-    max-width: 1400px;
+
+  .cosmic-button {
+    @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
+           transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+           hover:scale-105 active:scale-95;
+  }
+
+  .star {
+    @apply absolute rounded-full bg-white;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .meteor {
+    @apply absolute bg-gradient-to-r from-white via-white to-transparent rounded-full;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
   }
 }
 
-@utility text-glow {
-  @apply relative;
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-@utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
-@utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
-  border: 1px solid transparent;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-         hover:scale-105 active:scale-95;
-}
-
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
-}
-
-@utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
 }
 
 #root {
