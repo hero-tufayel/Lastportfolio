@@ -12,17 +12,20 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
-              Frontend Developer
+              Passionate Web Developer & Tech Creator
             </h3>
 
             <p className="text-muted-foreground">
-              With over 2 years of experience in web development, I specialize
+              With over 5 years of experience in web development, I specialize
               in creating responsive, accessible, and performant web
-              applications using modern technologies like React.js, Tailwind CSS, and JavaScript.
+              applications using modern technologies.
             </p>
 
             <p className="text-muted-foreground">
-              I'm passionate about crafting beautiful and functional user interfaces that provide exceptional user experiences. My focus is on writing clean, maintainable code and staying up-to-date with the latest web development trends and best practices.
+              I'm passionate about creating elegant solutions to complex
+              problems, and I'm constantly learning new technologies and
+              techniques to stay at the forefront of the ever-evolving web
+              landscape.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -47,9 +50,24 @@ export const AboutSection = () => {
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Frontend Development</h4>
+                  <h4 className="font-semibold text-lg"> Web Development</h4>
                   <p className="text-muted-foreground">
-                    Building modern, responsive web applications with React.js and Tailwind CSS.
+                    Creating responsive websites and web applications with
+                    modern frameworks.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
+                  <User className="h-6 w-6 text-primary" />
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
+                  <p className="text-muted-foreground">
+                    Designing intuitive user interfaces and seamless user
+                    experiences.
                   </p>
                 </div>
               </div>
@@ -61,9 +79,10 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Code Quality</h4>
+                  <h4 className="font-semibold text-lg">Project Management</h4>
                   <p className="text-muted-foreground">
-                    Writing clean, maintainable, and well-documented code following best practices.
+                    Leading projects from conception to completion with agile
+                    methodologies.
                   </p>
                 </div>
               </div>
